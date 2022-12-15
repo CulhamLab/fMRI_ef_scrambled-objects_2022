@@ -693,6 +693,9 @@ for fid = 1:number_files
             ind = length(g.images.filenames) + 1;
             g.images.filenames{ind} = fn;
             [img,~,alpha] = imread(fp);
+            if isempty(alpha)
+                alpha = ones(size(img(:,:,1)),'uint8') * 255;
+            end
             
             %apply background if transparent
             sz = size(img);
