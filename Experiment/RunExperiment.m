@@ -43,7 +43,7 @@ end
 %% Parameters - General
 
 %debug is for testing without the projector
-p.DEBUG = false;
+p.DEBUG = true;
 
 %TR in seconds
 p.TR = 1;
