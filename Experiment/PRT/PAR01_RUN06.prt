@@ -1,0 +1,75 @@
+
+FileVersion:        2
+
+ResolutionOfTime:   msec
+
+Experiment:         3DReachspace
+
+BackgroundColor:    0 0 0
+TextColor:          255 255 255
+TimeCourseColor:    192 192 192
+TimeCourseThick:    2
+ReferenceFuncColor: 0 0 80
+ReferenceFuncThick: 2
+
+NrOfConditions:     10
+
+2D body-part
+2
+ 156000       166000
+ 276000       286000
+Color:              0 0 170
+
+2D face
+2
+ 116000       126000
+ 376000       386000
+Color:              0 0 255
+
+2D object-scrambled
+2
+ 196000       206000
+ 316000       326000
+Color:              0 85 255
+
+2D object-solid
+2
+  96000       106000
+ 216000       226000
+Color:              0 170 255
+
+2D scene
+2
+ 136000       146000
+ 236000       246000
+Color:              0 255 255
+
+3D body-part
+2
+  36000        46000
+ 396000       406000
+Color:              85 255 170
+
+3D face
+2
+  76000        86000
+ 296000       306000
+Color:              170 255 85
+
+3D object-scrambled
+2
+  16000        26000
+ 356000       366000
+Color:              255 255 0
+
+3D object-solid
+2
+ 176000       186000
+ 256000       266000
+Color:              255 170 0
+
+3D scene
+2
+  56000        66000
+ 336000       346000
+Color:              255 85 0
