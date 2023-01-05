@@ -2,7 +2,7 @@
 Participants view an array of 3D generated images in stereo via fMRI Propixx Projector.  All stimuli images and source code pretaining to the Scrambled Objects project.
 
 # Photo Viewer VR
-[![Watch the video]((https://img.youtube.com/vi/YFrM9KxVOho/default.jpg)]([https://youtu.be/nTQUwghvy5Q](https://www.youtube.com/watch?v=YFrM9KxVOho))
+[![Watch the video](https://img.youtube.com/vi/YFrM9KxVOho/default.jpg)](https://youtu.be/YFrM9KxVOho)
 ## Summary
   Allows the user to view stereo photo images using their PC Oculus virtual reality headset.
 ## Installation
