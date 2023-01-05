@@ -2,8 +2,7 @@
 Participants view an array of 3D generated images in stereo via fMRI Propixx Projector.  All stimuli images and source code pretaining to the Scrambled Objects project.  This repository contains multiple code projects such as localizers, experiments, and a VR application for viewing stereo images in VR.
 
 # Photo Viewer VR
-[![Watch the video](https://img.youtube.com/vi/YFrM9KxVOho/0.jpg)](https://youtu.be/YFrM9KxVOho)
-[![Fibonacci RMI Java EE](http://img.youtube.com/vi/nX_inqaAzOI/0.jpg)](https://www.youtube.com/watch?v=nX_inqaAzOI&feature=youtu.be&hd=1 "RMI Fibonacci Java")
+[![Photo Viewer VR video demo](https://img.youtube.com/vi/YFrM9KxVOho/0.jpg)](https://youtu.be/YFrM9KxVOho)
 ## Summary
   Allows the user to view stereo photo images using their PC Oculus virtual reality headset.
 ## Installation
