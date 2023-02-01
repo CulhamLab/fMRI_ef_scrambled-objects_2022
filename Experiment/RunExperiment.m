@@ -30,11 +30,12 @@ end
         p.SCREEN.BACKGROUND_COLOUR = [128 128 128];
         p.SCREEN.TEXT_COLOUR = [0 0 0];
         p.FIXATION.LEFT_VIEW.ADJUST_X = -0;
-        p.FIXATION.LEFT_VIEW.ADJUST_Y = -75;
+        p.FIXATION.LEFT_VIEW.ADJUST_Y = -115; %smaller value (towards -inf) moves up (-75)
         p.FIXATION.RIGHT_VIEW.ADJUST_X = -0;
-        p.FIXATION.RIGHT_VIEW.ADJUST_Y = -75;
+        p.FIXATION.RIGHT_VIEW.ADJUST_Y = -115;
         p.VIDEOS.VERTICAL_SHIFT = -130; %number of PIXELS, positive is down, negative is up
         p.IMAGES.VERTICAL_SHIFT = -130; %number of PIXELS, positive is down, negative is up
+        p.IMAGES.VERTICAL_SHIFT_SCENES = -295;
 %     otherwise
 %         error('Unknown type!');
 % end
@@ -69,7 +70,7 @@ p.KEY.BUTTON_BOX = KbName({'1!' '2@' '3#' '4$' 'r' 'g' 'b' 'y' '1' '2' '3' '4'})
 %screen
 p.SCREEN.NUMBER = max(Screen('Screens'));
 p.SCREEN.RECT = []; %[0 0 1920 1080];
-p.SCREEN.EXPECTED_SIZE = [1080 1920]; %[height width]
+p.SCREEN.EXPECTED_SIZE = [1080 1920];%[1050 1680];%[1080 1920]; %[height width]
 
 %stereo
 p.SCREEN.STEREO_MODE = 1; %1 or 11 for shutter glasses (1 seems to work better)
@@ -116,7 +117,7 @@ if ~exist(p.PATH.DATA_FOLDER), mkdir(p.PATH.DATA_FOLDER);, end
 if exist('IsGitRepo','file') && ~IsGitRepo
     warning('This project does not appear to be part of a git repository. No git data will be saved.');
 elseif exist('GetGitInfo','file')
-    d.GitInfo = GetGitInfo;
+    d.GitInfo = GetGITInfo(pwd);
 else
     warning('The "CulhamLab/Git-Version" repo has not been configured. Information about this project''s current repository status (version, etc.) will NOT be saved to the data file.');
 end
@@ -295,12 +296,20 @@ for e = 1:height(d.order)
             tbl.LeftSourceIndex(1) = ind;
             tbl.LeftShiftY = p.IMAGES.VERTICAL_SHIFT;
             
+            if contains(tbl.LeftSourceName{1},'scene')
+                tbl.LeftShiftY = p.IMAGES.VERTICAL_SHIFT_SCENES;
+            end
+            
             %right
             tbl.RightSourceName{1} = d.order.Filename_right{e};
             ind = find(strcmp(g.images.filenames, tbl.RightSourceName{1}));
             if length(ind)~=1, error; end
             tbl.RightSourceIndex(1) = ind;
             tbl.RightShiftY = p.IMAGES.VERTICAL_SHIFT;
+            
+            if contains(tbl.RightSourceName{1},'scene')
+                tbl.RightShiftY = p.IMAGES.VERTICAL_SHIFT_SCENES;
+            end
         else
             %translation...
             switch lower(d.order.Motion{e})
@@ -321,6 +330,9 @@ for e = 1:height(d.order)
             tbl.LeftSourceIndex(1) = ind;
             tbl.LeftShiftY = p.IMAGES.VERTICAL_SHIFT;
             
+            if contains(tbl.LeftSourceName{1},'scene')
+                tbl.LeftShiftY = p.IMAGES.VERTICAL_SHIFT_SCENES;
+            end
             %right
             tbl.RightSourceName{1} = d.order.Filename_right{e};
             ind = find(strcmp(g.images.filenames, tbl.RightSourceName{1}));
@@ -328,6 +340,9 @@ for e = 1:height(d.order)
             tbl.RightSourceIndex(1) = ind;
             tbl.RightShiftY = p.IMAGES.VERTICAL_SHIFT;
             
+            if contains(tbl.RightSourceName{1},'scene')
+                tbl.RightShiftY = p.IMAGES.VERTICAL_SHIFT_SCENES;
+            end
             %positions
             tbl = repmat(tbl, [height(slide) 1]);
             tbl.TimeInEvent = slide.Time;
