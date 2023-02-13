@@ -28,7 +28,19 @@ for file = list'
     %find unique conditions
     cond_names = unique(order.Condition);
     cond_names(strcmpi(cond_names,'null')) = [];
-    cond_colours = uint8(jet(length(cond_names)) * 255);
+%     cond_colours = uint8(jet(length(cond_names)) * 255);
+
+    cond_colours = zeros(length(cond_names),3,'uint8');
+    cond_colours(strcmp(cond_names,'2D body-part'),:) = [4 51 255];
+    cond_colours(strcmp(cond_names,'2D face'),:) = [255 64 255];
+    cond_colours(strcmp(cond_names,'2D object-scrambled'),:) = [121 121 121];
+    cond_colours(strcmp(cond_names,'2D object-solid'),:) = [255 147 0];
+    cond_colours(strcmp(cond_names,'2D scene'),:) = [0 143 0];
+    cond_colours(strcmp(cond_names,'3D body-part'),:) = [0 253 255];
+    cond_colours(strcmp(cond_names,'3D face'),:) = [242 176 249];
+    cond_colours(strcmp(cond_names,'3D object-scrambled'),:) = [214 214 214];
+    cond_colours(strcmp(cond_names,'3D object-solid'),:) = [255 212 121];
+    cond_colours(strcmp(cond_names,'3D scene'),:) = [115 250 121];
 
 %     %separate one-backs?
 %     if sep_oneback
