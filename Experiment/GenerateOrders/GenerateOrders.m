@@ -4,12 +4,18 @@ GetParam
 number_par = 5;
 number_run = 8;
 
-number_stims_per_cond = 20;
+number_stims_per_cond = 14;
+
+stims_per_block = number_stims_per_cond/2;
+if stims_per_block ~= round(stims_per_block)
+    error('stims_per_block must be whole number')
+end
 
 %%
 sec_baseline_init = 16;
 sec_baseline_final = 16;
-sec_presentation = 1;
+sec_presentation = 1.150;
+sec_between_presentations = 0.325;
 sec_ITI = 10;
 
 %%
@@ -56,8 +62,8 @@ for par = 1:number_par
             stim_order = randperm(number_stims_per_cond);
             
             inds = find(order==cond);
-            stims{inds(1)} = stim_order(1:10);
-            stims{inds(2)} = stim_order(11:20);
+            stims{inds(1)} = stim_order(1:7);
+            stims{inds(2)} = stim_order(8:14);
         end
         
         %% create table
@@ -74,7 +80,7 @@ for par = 1:number_par
         v(end+1,:) = {'Display' 'string'};
         v(end+1,:) = {'Category' 'string'};
         v(end+1,:) = {'Stim' 'double'};
-        tbl = table('Size', [(number_trials*11)+1 12], 'VariableTypes', v(:,2), 'VariableNames', v(:,1));
+        tbl = table('Size', [(number_trials*14)+1 12], 'VariableTypes', v(:,2), 'VariableNames', v(:,1));
         tbl.Trial(:) = 0;
         tbl.Fixation(:) = {'On'};
         tbl.Is_repeat(:) = false;
@@ -94,7 +100,7 @@ for par = 1:number_par
             name_format = names_format{format};
             name_cateogry = names_category{category};
             
-            for s = 1:10
+            for s = 1:stims_per_block
                 row = row + 1;
                 
                 tbl.Trial(row) = trial;
@@ -129,6 +135,17 @@ for par = 1:number_par
                 tbl.Category{row} = name_cateogry;
                 tbl.Stim(row) = stim;
                 
+                %time between presentations
+                if s < stims_per_block
+                    row = row + 1;
+                    tbl.Trial(row) = trial;
+                    tbl.Condition{row} = 'NULL';
+                    tbl.Duration_Seconds(row) = sec_between_presentations;
+                    tbl.Format{row} = 'NULL';
+                    tbl.Is_repeat(row) = false;
+                    tbl.Fixation{row} = 'On';
+                    tbl.Stim(row) = 0;
+                end
                 
             end
             
