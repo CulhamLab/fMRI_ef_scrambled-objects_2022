@@ -1,7 +1,7 @@
 %%
 GetParam
 
-number_par = 5;
+number_par = 15;
 number_run = 8;
 
 number_stims_per_cond = 14;
